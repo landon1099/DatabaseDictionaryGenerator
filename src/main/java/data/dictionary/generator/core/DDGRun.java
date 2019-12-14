@@ -124,10 +124,11 @@ public class DDGRun implements InitMain {
                             String columnDef = (String) map.get("columnDef");
                             String remarks = (String) map.get("remarks");
                             Integer columnSize = (Integer) map.get("columnSize");//列大小
+                            Integer decimalDigits = (Integer) map.get("decimalDigits");//列小数位数
                             childSheet.addCell(new Label(1, 5 + columnCount, columnCount + "", wcf2));
                             childSheet.addCell(new Label(2, 5 + columnCount, columnName, wcf3));
                             childSheet.addCell(new Label(3, 5 + columnCount,
-                                    getTypeName(typeName, columnSize), wcf3));
+                                    getTypeName(typeName, columnSize, decimalDigits), wcf3));
                             childSheet.addCell(new Label(4, 5 + columnCount, decodeIsNullAble(isNullAble), wcf2));
                             childSheet.addCell(new Label(5, 5 + columnCount, columnDef, wcf2));
                             childSheet.addCell(new Label(6, 5 + columnCount, remarks, wcf3));
@@ -190,12 +191,21 @@ public class DDGRun implements InitMain {
     }
 
     //获取字段类型+长度
-    public String getTypeName(String typeName, Integer columnSize) {
+    public String getTypeName(String typeName, Integer columnSize, Integer decimalDigits) {
         if (!"DATE".equals(typeName)
                 && !"BLOB".equals(typeName)
                 && !"CLOB".equals(typeName)
-                && !"TIMESTAMP".equals(typeName)) {
+                && !"NUMBER".equals(typeName)
+                && !"BINARY_DOUBLE".equals(typeName)
+                && !"TIMESTAMP(6)".equals(typeName)) {
             typeName += "(" + columnSize + ")";
+        }
+        if ("NUMBER".equals(typeName)) {
+            if ("0".equals(decimalDigits+"")) {
+                typeName += "(" + columnSize + ")";
+            } else {
+                typeName += "(" + columnSize + ","+ decimalDigits +")";
+            }
         }
         return typeName;
     }

@@ -87,7 +87,7 @@ public class DBConnection {
                     String typeName = columnsRS.getString("TYPE_NAME");//字段类型名称(例如：VACHAR2)
                     String dataType = columnsRS.getString("DATA_TYPE");//字段数据类型(对应java.sql.Types中的常量)
                     int columnSize = columnsRS.getInt("COLUMN_SIZE");  //列大小
-                    //int decimalDigits = columnsRS.getInt("DECIMAL_DIGITS");  //小数位数
+                    int decimalDigits = columnsRS.getInt("DECIMAL_DIGITS");  //小数位数
                     String columnDef = columnsRS.getString("COLUMN_DEF");  //默认值
                     /**
                      *  0 (columnNoNulls) - 该列不允许为空
@@ -110,7 +110,7 @@ public class DBConnection {
                     map.put("columnSize", columnSize);//列大小
                     map.put("columnDef", columnDef);//默认值
                     map.put("isNullAble", isNullAble);//是否为空：yes/no
-
+                    map.put("decimalDigits", decimalDigits);//小数位数
                     columnList.add(map);
                 }
                 resultMap.put("columnList", columnList);
