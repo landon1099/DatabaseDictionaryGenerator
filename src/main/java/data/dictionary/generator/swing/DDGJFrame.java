@@ -6,7 +6,9 @@ import data.dictionary.generator.common.CommonUtils;
 import data.dictionary.generator.core.sqlite.DbInfoDao;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -41,6 +43,15 @@ public class DDGJFrame extends JFrame {
         tableModel = new DDGTableModel();
         tableModel.setDataVector(tableVales, columnNames);
         jTable = new JTable(tableModel);
+        //设置标题
+        JTableHeader tableHeader = jTable.getTableHeader();
+        tableHeader.setPreferredSize(new Dimension(tableHeader.getWidth(), 30));
+        tableHeader.setFont(new Font(null, Font.BOLD, 12));
+        //设置表格内容居中
+        DefaultTableCellRenderer dtr = new DefaultTableCellRenderer();
+        dtr.setHorizontalAlignment(JLabel.CENTER);
+        jTable.setDefaultRenderer(Object.class, dtr);
+        jTable.setRowHeight(28);  //设置行高
         JScrollPane scrollPane = new JScrollPane(jTable);   //支持滚动
         getContentPane().add(scrollPane, BorderLayout.CENTER);
         jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);  //单选
