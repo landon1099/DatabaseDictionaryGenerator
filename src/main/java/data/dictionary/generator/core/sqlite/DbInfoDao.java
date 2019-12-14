@@ -28,6 +28,7 @@ public class DbInfoDao {
             try {
                 initDbInfoDao();
                 TableUtils.createTable(connectionSource, DbInfo.class);
+                this.insertDbInfo(new DbInfo("jdbc:oracle:thin:@localhost:1521:orcl", "username", "password"));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
