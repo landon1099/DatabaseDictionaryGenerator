@@ -94,7 +94,7 @@ public class DBConnection {
                      *  1 (columnNullable) - 该列允许为空
                      *  2 (columnNullableUnknown) - 不确定该列是否为空
                      */
-//                int nullAble = columnsRS.getInt("NULLABLE");  //是否允许为null
+//                  int nullAble = columnsRS.getInt("NULLABLE");  //是否允许为null
                     /**
                      * ISO规则用来确定某一列的是否可为空(等同于NULLABLE的值:[ 0:'YES'; 1:'NO'; 2:''; ])
                      * YES -- 该列可以有空值;

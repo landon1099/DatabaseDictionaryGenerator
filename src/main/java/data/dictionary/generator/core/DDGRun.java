@@ -128,7 +128,7 @@ public class DDGRun implements InitMain {
                             childSheet.addCell(new Label(2, 5 + columnCount, columnName, wcf3));
                             childSheet.addCell(new Label(3, 5 + columnCount,
                                     getTypeName(typeName, columnSize), wcf3));
-                            childSheet.addCell(new Label(4, 5 + columnCount, isNullAble, wcf2));
+                            childSheet.addCell(new Label(4, 5 + columnCount, decodeIsNullAble(isNullAble), wcf2));
                             childSheet.addCell(new Label(5, 5 + columnCount, columnDef, wcf2));
                             childSheet.addCell(new Label(6, 5 + columnCount, remarks, wcf3));
                             columnCount++;
@@ -198,6 +198,17 @@ public class DDGRun implements InitMain {
             typeName += "(" + columnSize + ")";
         }
         return typeName;
+    }
+
+    //是否为空转码
+    public String decodeIsNullAble(String string) {
+        if ("YES".equals(string)) {
+            string = "Y";
+        }
+        if ("NO".equals(string)) {
+            string = "N";
+        }
+        return string;
     }
 
 }
