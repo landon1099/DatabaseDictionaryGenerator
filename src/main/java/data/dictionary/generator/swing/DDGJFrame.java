@@ -165,7 +165,7 @@ public class DDGJFrame extends JFrame {
         panel.add(delButton);
 
         //下一步按钮
-        final JButton nextButton = new JButton("下一步");
+        final JButton nextButton = new JButton("导出");
         nextButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String url = urlText.getText();
